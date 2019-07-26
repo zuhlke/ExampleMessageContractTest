@@ -14,12 +14,12 @@ import java.io.IOException;
 
 import static org.junit.Assert.assertEquals;
 
-public class MessagePactTest {
+public class ConsumerMessagePactTest {
 
     @Rule
-    public MessagePactProviderRule rule = new MessagePactProviderRule("Provider", this);
+    public MessagePactProviderRule rule = new MessagePactProviderRule("Producer", this);
 
-    @Pact(provider = "Provider", consumer = "Consumer")
+    @Pact(provider = "Producer", consumer = "Consumer")
     public MessagePact createPact(MessagePactBuilder builder) {
         DslPart body = new PactDslJsonBody()
                 .stringType("type")
@@ -33,7 +33,7 @@ public class MessagePactTest {
     }
 
     @Test
-    @PactVerification(value = {"Provider", "state"}, fragment = "createPact")
+    @PactVerification(value = {"Producer", "state"}, fragment = "createPact")
     public void canParseCreateEvent() throws IOException {
         Message message = new ObjectMapper().readValue(rule.getMessage(), Message.class);
         assertEquals(message,

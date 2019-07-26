@@ -1,0 +1,62 @@
+{
+    "consumer": {
+        "name": "Consumer"
+    },
+    "provider": {
+        "name": "Provider"
+    },
+    "messages": [
+        {
+            "description": "raul's message",
+            "metaData": {
+                "Content-Type": "application/json; charset=UTF-8"
+            },
+            "contents": {
+                "time": "string",
+                "id": 100,
+                "type": "string"
+            },
+            "providerStates": [
+                {
+                    "name": "state"
+                }
+            ],
+            "matchingRules": {
+                "body": {
+                    "$.type": {
+                        "matchers": [
+                            {
+                                "match": "type"
+                            }
+                        ],
+                        "combine": "AND"
+                    },
+                    "$.time": {
+                        "matchers": [
+                            {
+                                "match": "type"
+                            }
+                        ],
+                        "combine": "AND"
+                    },
+                    "$.id": {
+                        "matchers": [
+                            {
+                                "match": "integer"
+                            }
+                        ],
+                        "combine": "AND"
+                    }
+                }
+            }
+        }
+    ],
+    "metadata": {
+        "pact-specification": {
+            "version": "3.0.0"
+        },
+        "pact-jvm": {
+            "version": "3.5.13"
+        }
+    }
+}
